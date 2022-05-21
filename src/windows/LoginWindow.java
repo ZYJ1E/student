@@ -13,15 +13,15 @@ import java.io.*;
 import component.bg_picture;
 
 /*
-swingä»‹ç»:https://blog.csdn.net/xietansheng/article/details/72814492
-java finalå…³é”®å­—:https://www.runoob.com/java/java-modifier-types.html
+swing½éÉÜ:https://blog.csdn.net/xietansheng/article/details/72814492
+java final¹Ø¼ü×Ö:https://www.runoob.com/java/java-modifier-types.html
 box.add(projectNamePanel);
 box.add(enterUserName);
 box.add(enterPassWord);
 box.add(loginRegister);
  */
 public final class LoginWindow extends JFrame {
-    public final static int DEFAULT_WIDTH=400;//æ„å»ºç±»å¸¸é‡
+    public final static int DEFAULT_WIDTH=400;//¹¹½¨Àà³£Á¿
     public final static int DEFAULT_HEIGHT=400;
     public static final Dimension BOX_SIZE=new Dimension(150,25);
     public final LoginWindow myself=this;
@@ -32,23 +32,23 @@ public final class LoginWindow extends JFrame {
         setLayout(new BorderLayout());
         Box box= Box.createVerticalBox();
         LoginBar loginMenuBar= new LoginBar();
-        JLabel projectNameLabel=new JLabel("å­¦ç”Ÿæˆç»©ç®¡ç†ç³»ç»Ÿ");
+        JLabel projectNameLabel=new JLabel("Ñ§Éú³É¼¨¹ÜÀíÏµÍ³");
         JPanel projectNamePanel=new JPanel();
         projectNamePanel.add(projectNameLabel);
-        JLabel userName1=new JLabel("è´¦å·:");
+        JLabel userName1=new JLabel("ÕËºÅ:");
         JTextField userNameText = new JTextField();
         JPanel enterUserName=new JPanel();
         userNameText.setPreferredSize(BOX_SIZE);
         enterUserName.add(userName1);
         enterUserName.add(userNameText);
-        JLabel passWord1=new JLabel("å¯†ç :");
+        JLabel passWord1=new JLabel("ÃÜÂë:");
         JPasswordField passWordText = new JPasswordField();
         JPanel enterPassWord=new JPanel();
         passWordText.setPreferredSize(BOX_SIZE);
         enterPassWord.add(passWord1);
         enterPassWord.add(passWordText);
-        JButton loginButton=new JButton("ç™»å½•");
-        JButton registerButton=new JButton("æ³¨å†Œ");
+        JButton loginButton=new JButton("µÇÂ¼");
+        JButton registerButton=new JButton("×¢²á");
         JPanel loginRegister=new JPanel();
         loginRegister.add(registerButton);
         loginRegister.add(loginButton);
@@ -65,14 +65,14 @@ public final class LoginWindow extends JFrame {
         setLocationRelativeTo(null);
         setVisible(true);
         setLocationRelativeTo(null);
-        setTitle("æ¬¢è¿ä½¿ç”¨å­¦ç”Ÿæˆç»©ç®¡ç†ç³»ç»Ÿ");
+        setTitle("»¶Ó­Ê¹ÓÃÑ§Éú³É¼¨¹ÜÀíÏµÍ³");
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         WindowListener whenClosing = new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
                 var ensure_exit
                         = JOptionPane.showConfirmDialog(null,
-                        "æ˜¯å¦é€€å‡ºï¼Ÿå¯èƒ½ä¼šä¸¢å¤±æœªä¿å­˜çš„æ•°æ®!",
+                        "ÊÇ·ñÍË³ö£¿¿ÉÄÜ»á¶ªÊ§Î´±£´æµÄÊı¾İ!",
                         "NOTICE!"
                         , JOptionPane.YES_NO_OPTION);
                 if (ensure_exit == JOptionPane.YES_OPTION) {
@@ -96,13 +96,13 @@ public final class LoginWindow extends JFrame {
 
             if (isEmpty) {
                 JOptionPane.showMessageDialog(null,
-                        "ç”¨æˆ·åæˆ–å¯†ç ä¸ºç©º", "ERROR!",
+                        "ÓÃ»§Ãû»òÃÜÂëÎª¿Õ", "ERROR!",
                         JOptionPane.ERROR_MESSAGE
                 );
                 System.err.println("Empty Username or Password when Logging");
             } else if (!userData.exists()) {
                 JOptionPane.showMessageDialog(null,
-                        "æ‰¾ä¸åˆ°è´¦æˆ·ä¿¡æ¯ï¼Œè¯·å…ˆæ³¨å†Œè´¦å·", "æ‰¾ä¸åˆ°ç”¨æˆ·ä¿¡æ¯",
+                        "ÕÒ²»µ½ÕË»§ĞÅÏ¢£¬ÇëÏÈ×¢²áÕËºÅ", "ÕÒ²»µ½ÓÃ»§ĞÅÏ¢",
                         JOptionPane.ERROR_MESSAGE);
             } else {
                 try (BufferedReader dataReader =
@@ -116,7 +116,7 @@ public final class LoginWindow extends JFrame {
                         ++lines;
                         String[] getDataText = AES.decode(fileInfo).split("&");
 
-                        // æ•°æ®æ ¼å¼ä¸æ­£ç¡®
+                        // Êı¾İ¸ñÊ½²»ÕıÈ·
                         if (getDataText.length != 2) {
                             System.err.printf("Data Error: %s %d\n", fileInfo, lines);
                             dispose();
@@ -128,7 +128,7 @@ public final class LoginWindow extends JFrame {
                         if (isMatch) {
                             this.userName = userNameText.getText();
                             JOptionPane.showMessageDialog(null,
-                                    "ç™»é™†æˆåŠŸ", "SUCCESS!",
+                                    "µÇÂ½³É¹¦", "SUCCESS!",
                                     JOptionPane.INFORMATION_MESSAGE);
                             setDefaultCloseOperation(DISPOSE_ON_CLOSE);
                             dispose();
@@ -137,17 +137,17 @@ public final class LoginWindow extends JFrame {
                     }
                     if (getDefaultCloseOperation() != DISPOSE_ON_CLOSE) {
                         JOptionPane.showMessageDialog(null,
-                                "è´¦æˆ·æˆ–å¯†ç é”™è¯¯", "Error",
+                                "ÕË»§»òÃÜÂë´íÎó", "Error",
                                 JOptionPane.WARNING_MESSAGE);
                     }
                 } catch (IOException exception) {
                     JOptionPane.showMessageDialog(null,
-                            "æ²¡æœ‰ç”¨æˆ·æ–‡ä»¶çš„è¯»å†™æƒé™ï¼Œæœ¬ç¨‹åºå·²æ— æ³•æ­£å¸¸å·¥ä½œ", "ERROR!",
+                            "Ã»ÓĞÓÃ»§ÎÄ¼şµÄ¶ÁĞ´È¨ÏŞ£¬±¾³ÌĞòÒÑÎŞ·¨Õı³£¹¤×÷", "ERROR!",
                             JOptionPane.ERROR_MESSAGE);
                     exception.printStackTrace();
                 } catch (Exception e) {
-                    // å®Œæˆç™»å½•
-                    System.out.println("ç™»é™†æˆåŠŸ");
+                    // Íê³ÉµÇÂ¼
+                    System.out.println("µÇÂ½³É¹¦");
                 }
             }
         });
@@ -157,16 +157,16 @@ public final class LoginWindow extends JFrame {
     }
     private class LoginBar extends JMenuBar {
         public LoginBar() {
-            JMenu aboutMenu = new JMenu("å…³äº");
-            JMenu optionMenu = new JMenu("é€‰é¡¹");
-            JMenuItem authorInfo = new JMenuItem("ä½œè€…");
-            JMenuItem softwareInfo = new JMenuItem("è½¯ä»¶ä¿¡æ¯");
-            JMenuItem exitItem = new JMenuItem("ç›´æ¥é€€å‡º");
+            JMenu aboutMenu = new JMenu("¹ØÓÚ");
+            JMenu optionMenu = new JMenu("Ñ¡Ïî");
+            JMenuItem authorInfo = new JMenuItem("×÷Õß");
+            JMenuItem softwareInfo = new JMenuItem("Èí¼şĞÅÏ¢");
+            JMenuItem exitItem = new JMenuItem("Ö±½ÓÍË³ö");
             authorInfo.addActionListener(e -> JOptionPane.showMessageDialog(null,
-                    "ä¿¡ç®¡11ç­ï¼šæå¹¿å†›\nä¿¡ç®¡10ç­ï¼šå¼ è‹±æ°\nä¿¡ç®¡10ç­ï¼šå´æœè¾‰\n"
+                    "ĞÅ¹Ü11°à£ºÀî¹ã¾ü\nĞÅ¹Ü10°à£ºÕÅÓ¢½Ü\nĞÅ¹Ü10°à£ºÎâ³¯»Ô\n"
                     , "AUTHORS!", JOptionPane.INFORMATION_MESSAGE));
             softwareInfo.addActionListener(e -> JOptionPane.showMessageDialog(null,
-                    "Javaç¨‹åºè®¾è®¡ä¸å®è·µå¤§ä½œä¸š\nå­¦ç”Ÿä¿¡æ¯ç®¡ç†ç³»ç»Ÿ"
+                    "Java³ÌĞòÉè¼ÆÓëÊµ¼ù´ó×÷Òµ\nÑ§ÉúĞÅÏ¢¹ÜÀíÏµÍ³"
                     , "SYSTEM!", JOptionPane.INFORMATION_MESSAGE));
             exitItem.addActionListener(this::actionPerformed);
             aboutMenu.add(authorInfo);

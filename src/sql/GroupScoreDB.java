@@ -21,8 +21,7 @@ public class GroupScoreDB implements BaseDB {
     private ResultSet resultSet;
 
     private GroupScoreDB() throws SQLException {
-        resultSet = DB.query("select classid, avg(chin), avg(math), avg(eng),avg(phys),avg(chem), avg(bio),avg(pol)," +
-                "avg(his),avg(geo),avg(sumscore) from `stu` group by classid");
+        resultSet = DB.query("select classid, avg(chin), avg(math), avg(eng), avg(phys), avg(chem), avg(bio),avg(pol),avg(his), avg(geo),avg(sumscore) from `stu` group by classid");
         classScores = new HashMap<>();
         while (resultSet.next()) {
             var Class = new classscore();

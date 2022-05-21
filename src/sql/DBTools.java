@@ -3,10 +3,10 @@ package sql;
 import java.sql.*;
 
 public class DBTools {
-    private static final String URL = "jdbc:mysql://localhost:3307/student" +
+    private static final String URL = "jdbc:mysql://localhost:3306/student" +
             "?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC";//jdbc总协议 mysql子协议 子名称//localhost:3307/student
     private static final String USERNAME = "root";
-    private static final String PASSWORD = "18209849744lgj.";
+    private static final String PASSWORD = "5978836.wo";
     private static DBTools db;//
     private Connection track;//接口connection创建的track
     private PreparedStatement order;//创建prepare statement对象传输sql语句到数据库执行数据操作

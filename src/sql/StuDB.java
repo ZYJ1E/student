@@ -52,9 +52,8 @@ public class StuDB implements BaseDB {
     // 更新学生信息
     public void updateStu(Student student) {
         // 更新总表中的数据
-        final String updateOrigin = String.format("UPDATE `stu` SET " +
-                "name = ?, sexual = ?, birthday = ?, classid = ?, " +
-                "chin= ?, math= ?, eng= ?,phys= ?,chem= ?, bio= ?,pol= ?,his= ?,geo= ?,sumscore = ?WHERE ID = %d", student.getID());
+        final String updateOrigin = String.format("UPDATE `stu` SET name = ?, sexual = ?, birthday = ?, classid = ?, " + "chin= ?, math= ?, eng= ?,phys= ?,chem= ?, "+
+                "bio= ?,pol= ?,his= ?,geo= ?,sumscore = ? WHERE ID = %d", student.getID());
         DB.update(updateOrigin, student.getObj());
         closeAll();
     }
@@ -76,7 +75,7 @@ public class StuDB implements BaseDB {
         return lists.toArray(new String[lists.size()]);
     }
 
-
+// 查找功能
     public String[][] findStu(String object, int type, String Class) {
         String findOrder = null;
         ArrayList<String[]> res = new ArrayList<String[]>();

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding" defaultCharsetForPropertiesFiles="GBK">
+    <file url="file://$PROJECT_DIR$/src/component/TimeClock.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/execl/ExcelExport.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/sql/DBTools.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/sql/EditorDialog.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/windows/GradeManagerWindow.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/windows/LoginWindow.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/windows/MainWindow.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/windows/selectExportDialog.java" charset="GBK" />
+    <file url="PROJECT" charset="GBK" />
+  </component>
+</project>

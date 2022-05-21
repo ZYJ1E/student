@@ -83,7 +83,7 @@ public class ClassScoreDB implements BaseDB {
             exception.printStackTrace();
         }
 
-        return info.toArray(new String[info.size()][14]);
+        return info.toArray(new String[info.size()][15]);
     }
 
     public double getAllAvg(String className, int subject) {

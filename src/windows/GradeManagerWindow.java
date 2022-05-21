@@ -19,7 +19,7 @@ public class GradeManagerWindow  extends JFrame {
     private static final EventLogger EVENT_LOGGER=EventLogger.getEventLogger();
     private final GradeManagerWindow myself=this;
     private final String[] TITLE={
-     "学号", "姓名","性别","出生年月","班级","语文","数学",
+            "学号", "姓名","性别","出生年月","班级","语文","数学",
             "英语", "物理","化学","生物","政治","历史","地理"
             ,"总分"
     };
@@ -29,7 +29,7 @@ public class GradeManagerWindow  extends JFrame {
         JPanel functionPanel=new JPanel();
         JPanel dataPanel=new JPanel();
         JPanel selectClassPanel=new JPanel();
-        ClassComBox selectClassRange=new ClassComBox();
+        ClassComBox selectClassRange=new ClassComBox();//选择班级下拉框
         JPanel changePagePanel=new JPanel(new FlowLayout());
 
         searchPanel.setLayout(new GridLayout(1,2));
@@ -72,8 +72,7 @@ public class GradeManagerWindow  extends JFrame {
         sfPanel.add(functionPanel);
 
         dataPanel.setLayout(new GridLayout(1, 1));
-        String[][] data = STU_TOOLS.findStu("", StuDB.FIND_NAME,
-                (String) Objects.requireNonNull(selectClassRange.getSelectedItem()));
+        String[][] data = STU_TOOLS.findStu("", StuDB.FIND_NAME, (String) Objects.requireNonNull(selectClassRange.getSelectedItem()));
 
         DefaultTableModel editorTableMode = new DefaultTableModel(data, TITLE) {
             @Override
@@ -94,8 +93,7 @@ public class GradeManagerWindow  extends JFrame {
             editButton.setEnabled(true);
             removeButton.setEnabled(true);
         });
-        updateEditor(editorTable, STU_TOOLS.findStu("", StuDB.FIND_NAME,
-                (String) selectClassRange.getSelectedItem()));
+        updateEditor(editorTable, STU_TOOLS.findStu("", StuDB.FIND_NAME, (String) selectClassRange.getSelectedItem()));
         var editorScroll = new JScrollPane(editorTable);
         dataPanel.add(editorScroll);
 
@@ -124,8 +122,8 @@ public class GradeManagerWindow  extends JFrame {
         removeButton.addActionListener(event -> {
             final var selectedRow = editorTable.getSelectedRow();
             if (selectedRow != -1) {
-                var stuData = new String[14];
-                for (int i = 0; i < 14; i++) {
+                var stuData = new String[15];
+                for (int i = 0; i < 15; i++) {
                     stuData[i] = (String) editorTable.getValueAt(selectedRow, i);
                 }
                 final var stu = Student.getStudent(stuData);
@@ -244,11 +242,11 @@ public class GradeManagerWindow  extends JFrame {
         });
         // 编辑按钮事件
         editButton.addActionListener(event -> {
-            System.out.println("editButton");
-            /*int row = editorTable.getSelectedRow();
+            //System.out.println("editButton");
+            int row = editorTable.getSelectedRow();
+            System.out.println(row);
             var stuData = getEditData(row, editorTable);
-            EventQueue.invokeLater(() -> {
-                var editor = new EditorDialog(row, stuData);
+            EventQueue.invokeLater(() -> {var editor = new EditorDialog(row, stuData);
                 editor.setTable(editorTable);
                 editor.setRevokeButton(revokeButton);
                 editor.setLocationRelativeTo(null);
@@ -256,11 +254,10 @@ public class GradeManagerWindow  extends JFrame {
                     @Override
                     public void windowClosed(WindowEvent e) {
                         selectClassRange.update();
-
                     }
                 });
             });
-        */});
+        });
 
 
         addWindowListener(new WindowAdapter() {
@@ -291,8 +288,8 @@ public class GradeManagerWindow  extends JFrame {
     }
 
     public String[] getEditData(int row, JTable table) {
-        String[] res = new String[14];
-        for (int i = 0; i < 14; i++) {
+        String[] res = new String[15];
+        for (int i = 0; i < 15; i++) {
             res[i] = (String) table.getValueAt(row, i);
         }
 

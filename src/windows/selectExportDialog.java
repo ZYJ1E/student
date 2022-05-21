@@ -160,7 +160,7 @@ public class selectExportDialog extends JDialog {
     }
 
     private void actionPerformed(ActionEvent event) {
-        var selectItems = new ArrayList<String>();
+         var selectItems = new ArrayList<String>();
         for (var box : checkBoxes) {
             if (box.isSelected()) {
                 String subject = box.getText();
@@ -171,10 +171,10 @@ public class selectExportDialog extends JDialog {
                     case "英语":
                     case "物理":
                     case "化学":
-                    case  "生物":
+                    case "生物":
                     case "政治":
-                    case  "历史":
-                    case  "总成绩": {
+                    case "历史":
+                    case "总成绩": {
                         selectItems.add(subject);
                         selectItems.add(subject + "班级平均分");
                         selectItems.add(subject + "总平均分");

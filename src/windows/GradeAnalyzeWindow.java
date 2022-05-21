@@ -25,7 +25,7 @@ import static java.awt.EventQueue.invokeLater;
 public class GradeAnalyzeWindow extends JFrame {
     private static final StuDB STU_TOOLS = new StuDB();
     private final GradeAnalyzeWindow myself = this;
-    private final String[] TITLE = {
+    private final String[] allTITLE = {
             "学号", "姓名", "性别", "出生年月", "班级",
             "语文", "语文班级平均分", "语文全校平均分",
             "数学", "数学班级平均分", "数学全校平均分",
@@ -38,6 +38,10 @@ public class GradeAnalyzeWindow extends JFrame {
             "地理", "地理班级平均分", "地理全校平均分",
             "总成绩", "班级总成绩平均分", "全校总成绩平均分"
     };
+    /*private final String[] allTITLE = {
+            "学号", "姓名", "性别", "出生年月", "班级", "语文", "数学", "英语", "物理", "化学", "生物", "政治", "历史", "地理", "总成绩",};
+    private final String[] TITLE1 = {"语文班级平均分", "数学班级平均分", "英语班级平均分", "物理班级平均分", "化学班级平均分", "生物班级平均分", "政治班级平均分", "历史班级平均分", "地理班级平均分", "班级总成绩平均分"};
+    private final String[] TITLE2 = {"语文全校平均分","数学全校平均分", "英语全校平均分", "物理全校平均分","化学全校平均分", "生物全校平均分", "政治全校平均分","历史全校平均分", "地理全校平均分", "全校总成绩平均分"};*/
     private HashMap classScore;
     private final GroupScoreDB groupScoreTools = GroupScoreDB.getGroupScoreDBdb();
 
@@ -78,14 +82,14 @@ public class GradeAnalyzeWindow extends JFrame {
         selectPanel.add(idButton);
 
         // 控件组合
-        selectClassPanel.add(selectPanel);
-        selectClassPanel.add(selectClassRange);
-        selectClassPanel.add(findButton);
-        searchPanel.add(findTextFiled);
-        searchPanel.add(selectClassPanel);
-        functionPanel.add(analyzeButton);
-        functionPanel.add(classAnalyzeButton);
-        functionPanel.add(exportGradeButton);
+        selectClassPanel.add(selectPanel);//选择面板
+        selectClassPanel.add(selectClassRange);//选择班级面板
+        selectClassPanel.add(findButton);//查找按钮
+        searchPanel.add(findTextFiled);//查找文本框
+        searchPanel.add(selectClassPanel);//查找面板插入选择班级面板
+        functionPanel.add(analyzeButton);//按钮面板
+        functionPanel.add(classAnalyzeButton);//分析按钮
+        functionPanel.add(exportGradeButton);//信息导出按钮
 
         // 查找和功能面板整合
         sfPanel.setLayout(new GridLayout(2, 1));
@@ -123,12 +127,12 @@ public class GradeAnalyzeWindow extends JFrame {
         }).start();
 
 
-        var editorScroll = new JScrollPane(editorTable);
+        var editorScroll = new JScrollPane(editorTable); //JScrollPane带滚动条的容器
         dataPanel.add(editorScroll);
 
         // 窗口添加组件
         add(sfPanel, BorderLayout.NORTH);
-        add(dataPanel, BorderLayout.CENTER);
+        add(dataPanel,BorderLayout.CENTER);
 
         // 添加事件和属性设置
 
@@ -157,14 +161,20 @@ public class GradeAnalyzeWindow extends JFrame {
         analyzeButton.addActionListener(event -> {
 
             final int selectLine = editorTable.getSelectedRow();
-            var stuData = new String[9];
+            var stuData = new String[14];
 
-            for (int i = 0; i < 6; i++) {
+            for (int i = 0; i < 5; i++) {
                 stuData[i] = (String) editorTable.getValueAt(selectLine, i);
             }
+            stuData[5] = (String) editorTable.getValueAt(selectLine, 5);
             stuData[6] = (String) editorTable.getValueAt(selectLine, 8);
             stuData[7] = (String) editorTable.getValueAt(selectLine, 11);
             stuData[8] = (String) editorTable.getValueAt(selectLine, 14);
+            stuData[9] = (String) editorTable.getValueAt(selectLine, 17);
+            stuData[10] = (String) editorTable.getValueAt(selectLine, 20);
+            stuData[11] = (String) editorTable.getValueAt(selectLine, 23);
+            stuData[12] = (String) editorTable.getValueAt(selectLine, 26);
+            stuData[13] = (String) editorTable.getValueAt(selectLine, 29);
 
             invokeLater(() -> {
                 var chart = new AnalyzeFrame(Student.getStudent(stuData), AnalyzeFrame.PIE_CHART);
@@ -173,14 +183,20 @@ public class GradeAnalyzeWindow extends JFrame {
         });
         classAnalyzeButton.addActionListener(event -> {
             final int selectLine = editorTable.getSelectedRow();
-            var stuData = new String[9];
+            var stuData = new String[14];
 
-            for (int i = 0; i < 6; i++) {
+            for (int i = 0; i < 5; i++) {
                 stuData[i] = (String) editorTable.getValueAt(selectLine, i);
             }
+            stuData[5] = (String) editorTable.getValueAt(selectLine, 5);
             stuData[6] = (String) editorTable.getValueAt(selectLine, 8);
             stuData[7] = (String) editorTable.getValueAt(selectLine, 11);
             stuData[8] = (String) editorTable.getValueAt(selectLine, 14);
+            stuData[9] = (String) editorTable.getValueAt(selectLine, 17);
+            stuData[10] = (String) editorTable.getValueAt(selectLine, 20);
+            stuData[11] = (String) editorTable.getValueAt(selectLine, 23);
+            stuData[12] = (String) editorTable.getValueAt(selectLine, 26);
+            stuData[13] = (String) editorTable.getValueAt(selectLine, 29);
 
             invokeLater(() -> {
                 var chart = new AnalyzeFrame(Student.getStudent(stuData), AnalyzeFrame.BAR_CHART);
@@ -266,6 +282,8 @@ public class GradeAnalyzeWindow extends JFrame {
     }
 
     private void updateEditor(String[][] result) {
-        editorTableMode.setDataVector(result, myself.TITLE);
+        editorTableMode.setDataVector(result, myself.allTITLE);
+        //editorTableMode.setDataVector(result, myself.TITLE1);
+       // editorTableMode.setDataVector(result, myself.TITLE2);
     }
 }

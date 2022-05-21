@@ -16,21 +16,22 @@ public class MainWindow extends JFrame {
     public MainWindow(String username){
         JPanel topPanel=new JPanel();
         JPanel projectPanel=new JPanel();
-        JLabel projectName=new JLabel("ä¿¡ç®¡å­¦ç”Ÿæˆç»©ç®¡ç†ç³»ç»Ÿ");
+        JLabel projectName=new JLabel("ĞÅ¹ÜÑ§Éú³É¼¨¹ÜÀíÏµÍ³");
         projectPanel.add(projectName);
-        JLabel welcomeMsg=new JLabel(String.format("æ‚¨å¥½ï¼Œ%s",username));
+        JLabel welcomeMsg=new JLabel(String.format("ÄúºÃ£¬%s",username));
         topPanel.add(welcomeMsg);
         topPanel.add(new TimeClock());
         JPanel centerPanel=new JPanel();
-        centerPanel.setLayout(new FlowLayout(FlowLayout.CENTER,50,50));
-        JButton managerButton=new JButton("æˆç»©ä¿¡æ¯ç®¡ç†");
-        JButton gradeAnalyzeButton=new JButton("æˆç»©ç»¼åˆåˆ†æ");
-        JButton dataGenerateButton=new JButton("æµ‹è¯•æ•°æ®ç”Ÿæˆ");
-        JButton exitButton=new JButton("é€€å‡ºç®¡ç†ç³»ç»Ÿ");
+        centerPanel.setLayout(new FlowLayout(FlowLayout.CENTER,100,50));
+        JButton managerButton=new JButton("³É¼¨ĞÅÏ¢¹ÜÀí");
+        JButton gradeAnalyzeButton=new JButton("³É¼¨×ÛºÏ·ÖÎö");
+        //JButton dataGenerateButton=new JButton("²âÊÔÊı¾İÉú³É");
+        JButton exitButton=new JButton("ÍË³ö¹ÜÀíÏµÍ³");
         centerPanel.add(managerButton);
         centerPanel.add(gradeAnalyzeButton);
         centerPanel.add(exitButton);
-        centerPanel.add(dataGenerateButton);
+        //centerPanel.add(dataGenerateButton);
+
         add(projectPanel,BorderLayout.NORTH);
         add(centerPanel,BorderLayout.CENTER);
         add(topPanel,BorderLayout.PAGE_END);
@@ -38,7 +39,7 @@ public class MainWindow extends JFrame {
             //@Override
             public void WindowClosing(WindowEvent e){
                 final int ensureExit=JOptionPane.showConfirmDialog(
-                        null,"æ˜¯å¦é€€å‡º","æ˜¯",
+                        null,"ÊÇ·ñÍË³ö","ÊÇ",
                         JOptionPane.YES_NO_OPTION
                 );
                 if (ensureExit==0){
@@ -48,7 +49,8 @@ public class MainWindow extends JFrame {
             }
         });
         exitButton.addActionListener(event->
-                myself.dispatchEvent(new WindowEvent(myself,WindowEvent.WINDOW_CLOSING)));
+               // myself.dispatchEvent(new WindowEvent(myself,WindowEvent.WINDOW_CLOSING))
+                System.exit(0));
         managerButton.addActionListener(event->{
             System.out.println("select Manager");
             var manager = new GradeManagerWindow();
@@ -71,12 +73,12 @@ public class MainWindow extends JFrame {
             System.out.println("select Analyzer");
             var analyzer = new GradeAnalyzeWindow();
         });
-        dataGenerateButton.addActionListener(event->{
+        //dataGenerateButton.addActionListener(event->{
 
-        });
+        //});
         setSize(400,400);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        setTitle("ä¿¡ç®¡å­¦ç”Ÿç®¡ç†ç³»ç»Ÿ");
+        setTitle("ĞÅ¹ÜÑ§Éú¹ÜÀíÏµÍ³");
         setResizable(false);
         setVisible(true);
     }

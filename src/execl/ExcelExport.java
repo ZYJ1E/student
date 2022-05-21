@@ -17,11 +17,11 @@ import java.util.ArrayList;
 
 
 public class ExcelExport {
-    public static final String[] TITLE = {"Ñ§ºÅ", "ĞÕÃû", "ÉúÈÕ", "ĞÔ±ğ", "°à¼¶",
-            "ÓïÎÄ", "ÓïÎÄ°à¼¶Æ½¾ù³É¼¨", "ÓïÎÄÈ«Ğ£Æ½¾ù³É¼¨", "ÊıÑ§", "ÊıÑ§°à¼¶Æ½¾ù³É¼¨", "ÊıÑ§È«Ğ£Æ½¾ù³É¼¨", "Ó¢Óï", "Ó¢Óï°à¼¶Æ½¾ù³É¼¨", "Ó¢ÓïÈ«Ğ£Æ½¾ù³É¼¨",
-            "ÎïÀí", "ÎïÀí°à¼¶Æ½¾ù³É¼¨", "ÎïÀíÈ«Ğ£Æ½¾ù³É¼¨","»¯Ñ§", "»¯Ñ§°à¼¶Æ½¾ù³É¼¨", "»¯Ñ§È«Ğ£Æ½¾ù³É¼¨","ÉúÎï", "ÉúÎï°à¼¶Æ½¾ù³É¼¨", "ÉúÎïÈ«Ğ£Æ½¾ù³É¼¨",
-            "ÕşÖÎ", "ÕşÖÎ°à¼¶Æ½¾ù³É¼¨", "ÕşÖÎÈ«Ğ£Æ½¾ù³É¼¨","ÀúÊ·", "ÀúÊ·°à¼¶Æ½¾ù³É¼¨", "ÀúÊ·È«Ğ£Æ½¾ù³É¼¨","µØÀí", "µØÀí°à¼¶Æ½¾ù³É¼¨", "µØÀíÈ«Ğ£Æ½¾ù³É¼¨",
-            "×Ü³É¼¨", "°à¼¶×Ü³É¼¨", "È«Ğ£×Ü³É¼¨"};
+    public static final String[] TITLE = {"å­¦å·", "å§“å", "ç”Ÿæ—¥", "æ€§åˆ«", "ç­çº§",
+            "è¯­æ–‡", "è¯­æ–‡ç­çº§å¹³å‡æˆç»©", "è¯­æ–‡å…¨æ ¡å¹³å‡æˆç»©", "æ•°å­¦", "æ•°å­¦ç­çº§å¹³å‡æˆç»©", "æ•°å­¦å…¨æ ¡å¹³å‡æˆç»©", "è‹±è¯­", "è‹±è¯­ç­çº§å¹³å‡æˆç»©", "è‹±è¯­å…¨æ ¡å¹³å‡æˆç»©",
+            "ç‰©ç†", "ç‰©ç†ç­çº§å¹³å‡æˆç»©", "ç‰©ç†å…¨æ ¡å¹³å‡æˆç»©","åŒ–å­¦", "åŒ–å­¦ç­çº§å¹³å‡æˆç»©", "åŒ–å­¦å…¨æ ¡å¹³å‡æˆç»©","ç”Ÿç‰©", "ç”Ÿç‰©ç­çº§å¹³å‡æˆç»©", "ç”Ÿç‰©å…¨æ ¡å¹³å‡æˆç»©",
+            "æ”¿æ²»", "æ”¿æ²»ç­çº§å¹³å‡æˆç»©", "æ”¿æ²»å…¨æ ¡å¹³å‡æˆç»©","å†å²", "å†å²ç­çº§å¹³å‡æˆç»©", "å†å²å…¨æ ¡å¹³å‡æˆç»©","åœ°ç†", "åœ°ç†ç­çº§å¹³å‡æˆç»©", "åœ°ç†å…¨æ ¡å¹³å‡æˆç»©",
+            "æ€»æˆç»©", "ç­çº§æ€»æˆç»©", "å…¨æ ¡æ€»æˆç»©"};
     private static final StuDB STU_TOOL = new StuDB();
     private static final GroupScoreDB GROUP_SCORE_TOOLS = GroupScoreDB.getGroupScoreDBdb();
     private static final String all = "stu";
@@ -32,11 +32,11 @@ public class ExcelExport {
         JFileChooser chooser = new JFileChooser();
         FileSystemView fsv = FileSystemView.getFileSystemView();
         chooser.setCurrentDirectory(fsv.getHomeDirectory());
-        chooser.setDialogTitle("ÇëÑ¡Ôñµ¼³öÎ»ÖÃ");
-        chooser.setApproveButtonText("È·¶¨");
+        chooser.setDialogTitle("è¯·é€‰æ‹©å¯¼å‡ºä½ç½®");
+        chooser.setApproveButtonText("ç¡®å®š");
         chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-        result = chooser.showOpenDialog(null);//µ¯³öµÄ´°¿Ú
-        if (result == JFileChooser.APPROVE_OPTION) {//µã»÷ÁËÈ·ÈÏ»ò±£´æ ÏìÓ¦µÄÊÂ¼ş
+        result = chooser.showOpenDialog(null);//å¼¹å‡ºçš„çª—å£
+        if (result == JFileChooser.APPROVE_OPTION) {//ç‚¹å‡»äº†ç¡®è®¤æˆ–ä¿å­˜ å“åº”çš„äº‹ä»¶
             filePath = chooser.getSelectedFile().getPath();
             System.out.println("Choose Dictionary: " + filePath);
         }
@@ -50,23 +50,23 @@ public class ExcelExport {
         final var classNames = STU_TOOL.listClass();
 
         SXSSFWorkbook wb;
-        wb = new SXSSFWorkbook(5000);//ÄÚ´æÖĞ»º´æ5000ÌõÊı¾İ
-        wb.setCompressTempFiles(true);//ÁÙÊ±ÎÄ¼şÊÇ·ñ½øĞĞÑ¹Ëõ ²»Ñ¹ËõµÄ»°´ÅÅÌºÜ¿ì±»Ğ´Âú
+        wb = new SXSSFWorkbook(5000);//å†…å­˜ä¸­ç¼“å­˜5000æ¡æ•°æ®
+        wb.setCompressTempFiles(true);//ä¸´æ—¶æ–‡ä»¶æ˜¯å¦è¿›è¡Œå‹ç¼© ä¸å‹ç¼©çš„è¯ç£ç›˜å¾ˆå¿«è¢«å†™æ»¡
         for (var className : classNames) {
             final String sheetName;
             if (all.equals(className)) {
-                sheetName = "ËùÓĞÑ§Éú";
+                sheetName = "æ‰€æœ‰å­¦ç”Ÿ";
             } else {
                 sheetName = className;
             }
-            var sheet = wb.createSheet(sheetName);//sheetnameÊÇ°à¼¶Ãû
-            var firstRow = sheet.createRow(0);//´´½¨µÚÒ»ĞĞ
+            var sheet = wb.createSheet(sheetName);//sheetnameæ˜¯ç­çº§å
+            var firstRow = sheet.createRow(0);//åˆ›å»ºç¬¬ä¸€è¡Œ
             for (int i = 0; i < TITLE.length; i++) {
-                var cell = firstRow.createCell(i);//´´½¨µ¥Ôª¸ñ
-                cell.setCellValue(TITLE[i]);//µ¥Ôª¸ñµÄÖµ
+                var cell = firstRow.createCell(i);//åˆ›å»ºå•å…ƒæ ¼
+                cell.setCellValue(TITLE[i]);//å•å…ƒæ ¼çš„å€¼
             }
             var res = STU_TOOL.findStu("", StuDB.FIND_NAME, className);
-            for (int i = 1; i <= res.length; i++) {//²éÕÒ½á¹û¼¯ºÏres
+            for (int i = 1; i <= res.length; i++) {//æŸ¥æ‰¾ç»“æœé›†åˆres
                 var row = sheet.createRow(i);
                 for (int j = 0; j < res[i - 1].length; j++) {
                     var cell = row.createCell(j);
@@ -82,7 +82,7 @@ public class ExcelExport {
         }
 
         try {
-            final var fileName = String.format("%s/×Ü³É¼¨ĞÅÏ¢±í%s%d.xlsx",
+            final var fileName = String.format("%s/æ€»æˆç»©ä¿¡æ¯è¡¨%s%d.xlsx",
                     filePath, LocalDate.ofInstant(Instant.now(), ZoneId.systemDefault()), wb.hashCode());
             OutputStream fileOut = new FileOutputStream(fileName);
             final var buffer = new BufferedOutputStream(fileOut, 20480);
@@ -99,7 +99,7 @@ public class ExcelExport {
             System.out.printf("Save %s Successfully!\n", fileName);
             return true;
         } catch (FileNotFoundException e) {
-            System.err.println("ÎŞ·¨Ğ´Èë¸ÃÎÄ¼ş");
+            System.err.println("æ— æ³•å†™å…¥è¯¥æ–‡ä»¶");
             e.printStackTrace();
         }
         return false;
@@ -108,7 +108,7 @@ public class ExcelExport {
     public boolean exportSelected(ArrayList<String> options, String className, int type) {
         final var classScores = GROUP_SCORE_TOOLS.getScores().get(className);
 
-        String sheetName = all.equals(className) ? "È«Ğ£³É¼¨" : className + "°à³É¼¨";
+        String sheetName = all.equals(className) ? "å…¨æ ¡æˆç»©" : className + "ç­æˆç»©";
 
         final SXSSFWorkbook wb;
         wb = new SXSSFWorkbook(5000);
@@ -121,34 +121,34 @@ public class ExcelExport {
             cell.setCellValue(options.get(i));
         }
 
-        // »ñÈ¡Ä³°àÑ§ÉúĞÅÏ¢£¬°´ÕÕtypeµÄË³Ğò
+        // è·å–æŸç­å­¦ç”Ÿä¿¡æ¯ï¼ŒæŒ‰ç…§typeçš„é¡ºåº
         var res = new ClassScoreDB().listStuScores(className, type);
         for (int i = 1; i <= res.length; i++) {
             var row = sheet.createRow(i);
             int column = 0;
             for (var opt : options) {
                 switch (opt) {
-                    case "Ñ§ºÅ" -> {
+                    case "å­¦å·" -> {
                         var cell = row.createCell(column++);
                         cell.setCellValue(res[i - 1][0]);
                     }
-                    case "ĞÕÃû" -> {
+                    case "å§“å" -> {
                         var cell = row.createCell(column++);
                         cell.setCellValue(res[i - 1][1]);
                     }
-                    case "ĞÔ±ğ" -> {
+                    case "æ€§åˆ«" -> {
                         var cell = row.createCell(column++);
                         cell.setCellValue(res[i - 1][2]);
                     }
-                    case "ÉúÈÕ" -> {
+                    case "ç”Ÿæ—¥" -> {
                         var cell = row.createCell(column++);
                         cell.setCellValue(res[i - 1][3]);
                     }
-                    case "°à¼¶" -> {
+                    case "ç­çº§" -> {
                         var cell = row.createCell(column++);
                         cell.setCellValue(res[i - 1][4]);
                     }
-                    case "ÓïÎÄ" -> {
+                    case "è¯­æ–‡" -> {
                         var cell = row.createCell(column++);
                         cell.setCellValue(res[i - 1][5]);
                         var cellClassAve = row.createCell(column++);
@@ -156,7 +156,7 @@ public class ExcelExport {
                         var cellAllAve = row.createCell(column++);
                         cellAllAve.setCellValue(new ClassScoreDB().getAllAvg(className, ClassScoreDB.CHIN));
                     }
-                    case "ÊıÑ§" -> {
+                    case "æ•°å­¦" -> {
                         var cell = row.createCell(column++);
                         cell.setCellValue(res[i - 1][6]);
                         var cellClassAve = row.createCell(column++);
@@ -164,7 +164,7 @@ public class ExcelExport {
                         var cellAllAve = row.createCell(column++);
                         cellAllAve.setCellValue(new ClassScoreDB().getAllAvg(className, ClassScoreDB.MATH));
                     }
-                    case "Ó¢Óï" -> {
+                    case "è‹±è¯­" -> {
                         var cell = row.createCell(column++);
                         cell.setCellValue(res[i - 1][7]);
                         var cellClassAve = row.createCell(column++);
@@ -172,7 +172,7 @@ public class ExcelExport {
                         var cellAllAve = row.createCell(column++);
                         cellAllAve.setCellValue(new ClassScoreDB().getAllAvg(className, ClassScoreDB.ENG));
                     }
-                    case "ÎïÀí" -> {
+                    case "ç‰©ç†" -> {
                         var cell = row.createCell(column++);
                         cell.setCellValue(res[i - 1][8]);
                         var cellClassAve = row.createCell(column++);
@@ -180,7 +180,7 @@ public class ExcelExport {
                         var cellAllAve = row.createCell(column++);
                         cellAllAve.setCellValue(new ClassScoreDB().getAllAvg(className, ClassScoreDB.PHYS));
                     }
-                    case "»¯Ñ§" -> {
+                    case "åŒ–å­¦" -> {
                         var cell = row.createCell(column++);
                         cell.setCellValue(res[i - 1][9]);
                         var cellClassAve = row.createCell(column++);
@@ -188,7 +188,7 @@ public class ExcelExport {
                         var cellAllAve = row.createCell(column++);
                         cellAllAve.setCellValue(new ClassScoreDB().getAllAvg(className, ClassScoreDB.CHEM));
                     }
-                    case "ÉúÎï" -> {
+                    case "ç”Ÿç‰©" -> {
                         var cell = row.createCell(column++);
                         cell.setCellValue(res[i - 1][10]);
                         var cellClassAve = row.createCell(column++);
@@ -196,7 +196,7 @@ public class ExcelExport {
                         var cellAllAve = row.createCell(column++);
                         cellAllAve.setCellValue(new ClassScoreDB().getAllAvg(className, ClassScoreDB.BIO));
                     }
-                    case "ÕşÖÎ" -> {
+                    case "æ”¿æ²»" -> {
                         var cell = row.createCell(column++);
                         cell.setCellValue(res[i - 1][11]);
                         var cellClassAve = row.createCell(column++);
@@ -204,7 +204,7 @@ public class ExcelExport {
                         var cellAllAve = row.createCell(column++);
                         cellAllAve.setCellValue(new ClassScoreDB().getAllAvg(className, ClassScoreDB.POL));
                     }
-                    case "ÀúÊ·" -> {
+                    case "å†å²" -> {
                         var cell = row.createCell(column++);
                         cell.setCellValue(res[i - 1][12]);
                         var cellClassAve = row.createCell(column++);
@@ -212,7 +212,7 @@ public class ExcelExport {
                         var cellAllAve = row.createCell(column++);
                         cellAllAve.setCellValue(new ClassScoreDB().getAllAvg(className, ClassScoreDB.HIS));
                     }
-                    case "µØÀí" -> {
+                    case "åœ°ç†" -> {
                         var cell = row.createCell(column++);
                         cell.setCellValue(res[i - 1][13]);
                         var cellClassAve = row.createCell(column++);
@@ -220,7 +220,7 @@ public class ExcelExport {
                         var cellAllAve = row.createCell(column++);
                         cellAllAve.setCellValue(new ClassScoreDB().getAllAvg(className, ClassScoreDB.GEO));
                     }
-                    case "×Ü³É¼¨" -> {
+                    case "æ€»æˆç»©" -> {
                         var cell = row.createCell(column++);
                         cell.setCellValue(res[i - 1][14]);
                         var cellClassAve = row.createCell(column++);
@@ -241,7 +241,7 @@ public class ExcelExport {
         }
 
         try {
-            final var fileName = String.format("%s/%s±í%s%d.xlsx",
+            final var fileName = String.format("%s/%sè¡¨%s%d.xlsx",
                     filePath, sheetName, LocalDate.ofInstant(Instant.now(), ZoneId.systemDefault()), wb.hashCode());
             OutputStream fileOut = new FileOutputStream(fileName);
             final var buffer = new BufferedOutputStream(fileOut, 20480);
@@ -258,7 +258,7 @@ public class ExcelExport {
             System.out.printf("Save %s Successfully!\n", fileName);
             return true;
         } catch (FileNotFoundException e) {
-            System.err.println("ÎŞ·¨Ğ´Èë¸ÃÎÄ¼ş");
+            System.err.println("æ— æ³•å†™å…¥è¯¥æ–‡ä»¶");
             e.printStackTrace();
         }
 

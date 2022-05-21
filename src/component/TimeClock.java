@@ -10,7 +10,7 @@ public class TimeClock extends JPanel {
         JLabel showTime=new JLabel();
         JLabel showDate=new JLabel();
         LocalDateTime systemTime=LocalDateTime.now();
-        showDate.setText(String.format("%då¹´%02dæœˆ%02dæ—¥%s",systemTime.getYear(),
+        showDate.setText(String.format("%dÄê%02dÔÂ%02dÈÕ%s",systemTime.getYear(),
                 systemTime.getMonthValue(),
                 systemTime.getDayOfMonth(),
                 systemTime.getDayOfWeek().toString()));
